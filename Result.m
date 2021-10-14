@@ -24,7 +24,7 @@ end
 end
 
 function predict_endpoints = challenge(sample_path)
-load('Net_1_1.mat');
+load('Net_2_1.mat');
 [signal,Fs,tm]=rdsamp(sample_path);
 sig=signal(:,1);
 % sig = signal{1,1}(1,1);
