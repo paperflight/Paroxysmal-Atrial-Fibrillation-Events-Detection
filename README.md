@@ -4,7 +4,9 @@ Paroxysmal Atrial Fibrillation Events Detection from Dynamic ECG Recordings chal
 The data format must be formed into WFDB and read via relative package.Cancel changes
 
 ## How to run this code
-predict_endpoints=Result(sample_name,sample_path,save_path)
+    predict_endpoints=Result(sample_name,sample_path,save_path)
+
+where 'sample_name' is the path to store the sample name and the sample name (RECORDS), 'sample_path' is the relative path where the recording is stored and refer to wfdb toolbox, 'save_path' is the path where the results are stored.
 
 ## Where to reference
 https://github.com/CPSC-Committee/cpsc2021-matlab-entry
