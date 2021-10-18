@@ -31,12 +31,12 @@ sig=signal(:,1);
 y_seq=zeros(length(sig),1);
 end_points=[];
 fs = 200;
-L = 10;
+L = 5;
 D = 1;
 
-Seg = floor(length(sig)/fs/D);
+Seg = floor((length(Data)-L*fs)/D/fs);
 
-for i = 1:Seg-10
+for i = 1:Seg
     region_head = (i-1) * fs * D + 1;
     region_end = (i-1) * fs * D + fs * L;
     predict_res = classify(net, sig(region_head:region_end));
