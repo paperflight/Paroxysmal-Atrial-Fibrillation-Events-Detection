@@ -34,7 +34,7 @@ fs = 200;
 L = 5;
 D = 1;
 
-Seg = floor((length(Data)-L*fs)/D/fs);
+Seg = floor((length(sig)-L*fs)/D/fs);
 
 for i = 1:Seg
     region_head = (i-1) * fs * D + 1;
