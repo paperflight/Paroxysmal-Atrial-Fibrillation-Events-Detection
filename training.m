@@ -168,3 +168,36 @@ options = trainingOptions("sgdm", ...
     "Verbose",false);
 
 net = trainNetwork(Train,TrainLabels,layers,options);
+
+
+function [idxstart,idxend] = ATRCOV(Input)
+tf = cellfun('isempty',Input);
+Input(tf) = {0};
+Output = string(Input);
+idx1 = find(Output == '(AFIB');
+idx2 = find(Output == '(AFL');
+idxend = find(Output == '(N');
+idxstart = [idx1,idx2];
+IES = isempty(idxstart);
+IEN = isempty(idxend);
+    if IES == 1 || length(idxend) > length(idxstart)
+        idxstart = [1;idxstart];
+    end
+    if IEN == 1 || length(idxend) < length(idxstart)
+        idxend = [idxend;length(Input)];
+    end
+end
+
+% Moving Window Segmentation
+function [Segments, Seg] = SegFunction(Data,L,D)
+
+fs = 200;
+
+Seg = floor((length(Data)-L*fs)/D/fs);
+
+for i = 1:Seg
+Segments(i,:) = Data((i-1)*fs*D+1:(i-1)*fs*D+fs*L);
+% Segments(i,:) = normalize(Segments(i,:));
+end
+
+end
