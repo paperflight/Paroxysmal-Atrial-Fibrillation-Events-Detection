@@ -13,4 +13,4 @@ Change the working dictory to current dictory and run:
 where 'sample_name' is the path to store the sample name and the sample name (RECORDS), 'sample_path' is the relative path where the recording is stored and refer to wfdb toolbox, 'save_path' is the path where the results are stored.
 
 ## Where to reference
-https://github.com/CPSC-Committee/cpsc2021-matlab-entry
+https://github.com/CPSC-Committee/cpsc2021-matlab-entry 
