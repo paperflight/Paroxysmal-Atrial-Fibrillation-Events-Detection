@@ -417,3 +417,4 @@ for m=2:M
    p(m)=A(m)/B(m-1);
    e(m)=-log(p(m));
 end
+end
