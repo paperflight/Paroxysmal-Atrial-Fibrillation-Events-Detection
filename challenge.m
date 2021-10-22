@@ -1,5 +1,5 @@
 function predict_endpoints = challenge(sample_path)
-load('Net_2_2.mat');
+load('Net_2_3.mat');
 [signal,Fs,tm]=rdsamp(sample_path);
 sig=signal(:,1);
 % sig = signal{1,1}(1,1);
