@@ -72,7 +72,11 @@ for z=1:length(y_seq)
     end
 end
 
-predict_endpoints=[start_points,end_points];
+if ~all(y_seq)
+    predict_endpoints = [];
+else
+    predict_endpoints=[start_points,end_points];
+end
 
 end
 
