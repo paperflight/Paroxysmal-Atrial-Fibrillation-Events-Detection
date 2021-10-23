@@ -1,5 +1,5 @@
 function predict_endpoints = challenge(sample_path)
-load('Net_2_3.mat');
+load('Net_2_4.mat');
 [signal,Fs,tm]=rdsamp(sample_path);
 sig=signal(:,1);
 % sig = signal{1,1}(1,1);
@@ -24,7 +24,15 @@ if double(predict_res) == 2
     y_seq(length(sig)-fs*L + 1:length(sig)) = 1;
 end
 
-if ~any(y_seq)
+for i=1:length(y_seq) - 1100
+    x = y_seq(i:i+1100);
+    if any(x) && x(1) == 0 && x(length(x)) == 0
+        x(x==1) = 0;
+        y_seq(i:i+1100) = x;
+    end
+end
+
+if ~any(y_seq) || sum(y_seq) / length(sig) < 0.05
     predict_endpoints = [];
     return
 end
@@ -47,7 +55,23 @@ end
 
 for i=1:length(res)
     if res(i)
-        y_seq(r_peak(i):r_peak(i+window_size)) = 1;
+        y_seq(r_peak(i):r_peak(i+window_size)) = y_seq(r_peak(i):r_peak(i+window_size)) + 1;
+    end
+end
+
+y_seq = uint8(y_seq / 5);
+
+if y_seq(6) == 1
+    y_seq(1:6) = 1;
+end
+if y_seq(length(y_seq) - 6) == 1
+    y_seq(length(y_seq) - 6 : length(y_seq)) = 1;
+end
+for i=1:length(y_seq) - 800
+    x = y_seq(i:i+800);
+    if any(x) && x(1) == 1 && x(length(x)) == 1
+        x(x==0) = 1;
+        y_seq(i:i+800) = x;
     end
 end
 
@@ -84,6 +108,7 @@ else
 end
 
 end
+
 
 function [QRS, Feature] = RdetectFEextract(sig)
     Fs = 200;
