@@ -360,6 +360,22 @@ x=LocalMax(Raw_signal,x);
 
 end
 
+function Max = LocalMax(y,x)
+i=1;
+if y(x)>y(x-1)
+    while y(x+i)-y(x+i+1) <= 0
+        i = i+1;
+    end
+        Max = x+i;
+else
+    while y(x-i-1)-y(x-i) >= 0
+        i = i+1;
+    end
+        Max = x-i;
+end
+
+end
+
 function Filtered = MYBandPass(Raw,fs,low,high,Order)
 
 [b,a] = butter(Order,low/(fs/2),'high');
