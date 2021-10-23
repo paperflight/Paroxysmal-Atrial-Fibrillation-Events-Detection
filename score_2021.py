@@ -161,7 +161,7 @@ def score(data_path, ans_path):
             ue_score = ue_calculate(endpoints_pred, TrueRef.endpoints_true, TrueRef.onset_score_range, TrueRef.offset_score_range)
         else:
             ue_score = 0
-
+        print('PD: ' + str(ur_score) + '  DD: ' + str(ue_score))
         u = ur_score + ue_score
         SCORE.append(u)
 
