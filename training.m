@@ -99,19 +99,6 @@ options = trainingOptions("sgdm", ...
 
 net = trainNetwork(Train,TrainLabels,layers,options);
 
-% No_Moving Window Segmentation
-function [Segments, Seg] = SegFunction(Data,L)
-
-fs = 200;
-
-Seg = floor(length(Data)/fs/L);
-
-for i = 1:Seg
-Segments(i,:) = Data((i-1)*fs*L+1:i*fs*L);
-end
-
-end
-
 %% TrainingFE_FC
 load('Label.mat')
 load('Signal.mat')
@@ -289,3 +276,16 @@ options = trainingOptions("sgdm", ...
     "Verbose",false);
 
 net = trainNetwork(Train,TrainLabels,layers,options);
+
+% No_Moving Window Segmentation
+function [Segments, Seg] = SegFunction(Data,L)
+
+fs = 200;
+
+Seg = floor(length(Data)/fs/L);
+
+for i = 1:Seg
+Segments(i,:) = Data((i-1)*fs*L+1:i*fs*L);
+end
+
+end
