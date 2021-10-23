@@ -24,7 +24,7 @@ if double(predict_res) == 2
     y_seq(length(sig)-fs*L + 1:length(sig)) = 1;
 end
 
-if ~all(y_seq)
+if ~any(y_seq)
     predict_endpoints = [];
     return
 end
