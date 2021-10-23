@@ -72,7 +72,7 @@ for z=1:length(y_seq)
     end
 end
 
-if sum(y_seq) / length(sig) > 0.95
+if sum(y_seq) / length(sig) > 0.9
     predict_endpoints = [1, length(signal)];
     return
 end
