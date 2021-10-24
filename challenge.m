@@ -104,7 +104,7 @@ if sum(y_seq) / length(sig) > 0.5
 end
 
 if ~any(y_seq)
-    predict_endpoints = [];
+    predict_endpoints = [1, length(signal)];
 else
     predict_endpoints=[start_points,end_points];
 end
