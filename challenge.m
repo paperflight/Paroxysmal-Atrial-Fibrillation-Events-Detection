@@ -61,11 +61,13 @@ end
 
 y_seq = uint8(y_seq / 5);
 
-if y_seq(6) == 1
-    y_seq(1:6) = 1;
-end
-if y_seq(length(y_seq) - 6) == 1
-    y_seq(length(y_seq) - 6 : length(y_seq)) = 1;
+if length(r_peak) > 7
+    if y_seq(r_peak(6)) == 1
+        y_seq(1:r_peak(6)) = 1;
+    end
+    if y_seq(r_peak(length(r_peak) - 6)) == 1
+        y_seq(r_peak(length(r_peak) - 6) : length(y_seq)) = 1;
+    end
 end
 for i=1:length(y_seq) - 800
     x = y_seq(i:i+800);
