@@ -68,7 +68,7 @@ if y_seq(r_peak(length(r_peak) - 4) + 1) == 3
     y_seq(r_peak(length(r_peak) - 4) : length(y_seq)) = 3;
 end
 
-y_seq = uint8(y_seq / 5);
+y_seq = uint8(y_seq +1/ 5);
 
 for i=1:length(y_seq) - 800
     x = y_seq(i:i+800);
