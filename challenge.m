@@ -32,7 +32,7 @@ for i=1:length(y_seq) - 1100
     end
 end
 
-if ~any(y_seq) || sum(y_seq) / length(sig) < 0.1
+if ~any(y_seq) || sum(y_seq) / length(sig) < 0.05
     predict_endpoints = [];
     return
 end
