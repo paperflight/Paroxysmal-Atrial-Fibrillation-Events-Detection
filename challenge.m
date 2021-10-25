@@ -48,15 +48,17 @@ load('Net_3_3.mat'); % net_3_1
 res = classify(net_3_3, signal_r_peak);
 res = double(res) - 1;
 
-if all(res)
-    predict_endpoints = [1, length(signal)];
-    return
-end
-
 for i=1:length(res)
     if res(i)
         y_seq(r_peak(i):r_peak(i+window_size)) = y_seq(r_peak(i):r_peak(i+window_size)) + 1;
     end
+end
+
+y_seq_binary = y_seq;
+y_seq_binary(y_seq_binary >= 1) = 1;
+if sum(y_seq_binary) / length(signal) > 0.8
+    predict_endpoints = [1, length(signal)];
+    return
 end
 
 y_seq = uint8(y_seq / 5);
@@ -96,11 +98,6 @@ for z=1:length(y_seq)
        g2=g2+1;
        end_points(g2,:)=z;
     end
-end
-
-if sum(y_seq) / length(sig) > 0.5
-    predict_endpoints = [1, length(signal)];
-    return
 end
 
 if ~any(y_seq)
