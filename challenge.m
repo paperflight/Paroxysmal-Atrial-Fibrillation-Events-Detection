@@ -61,7 +61,22 @@ if sum(y_seq_binary) / length(signal) > 0.8
     return
 end
 
+head = y_seq(r_peak(1):r_peak(4));
+endd = y_seq(r_peak(length(r_peak) - 4) : r_peak(length(r_peak)));
+head(head > 0) = 1;
+endd(end > 0) = 1;
+
 y_seq = uint8(y_seq / 5);
+
+y_seq(r_peak(1):r_peak(4)) = head;
+y_seq(r_peak(length(r_peak) - 4) : r_peak(length(r_peak))) = endd;
+
+if y_seq(r_peak(1)) == 1
+    y_seq(1:r_peak(1)) = 1; 
+end
+if y_seq(r_peak(length(r_peak))) == 1
+    y_seq(r_peak(length(r_peak)) : length(y_seq)) = 1;
+end
 
 for i=1:length(y_seq) - 800
     x = y_seq(i:i+800);
