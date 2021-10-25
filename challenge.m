@@ -56,7 +56,7 @@ end
 
 y_seq_binary = y_seq;
 y_seq_binary(y_seq_binary >= 1) = 1;
-if sum(y_seq_binary) / length(signal) > 0.8
+if sum(y_seq_binary) / length(signal) > 0.6
     predict_endpoints = [1, length(signal)];
     return
 end
