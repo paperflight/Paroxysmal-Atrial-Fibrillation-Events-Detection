@@ -45,7 +45,7 @@ window_size = 6 - 1;
 % signal_r_peak: (num r_peak - 4) * 7
 
 load('Net_3_6.mat'); % net_3_1
-res = classify(net_3_3, signal_r_peak);
+res = classify(net_3_6, signal_r_peak);
 res = double(res) - 1;
 
 for i=1:length(res)
